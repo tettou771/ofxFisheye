@@ -1,0 +1,6 @@
+example*/*
+!example*/src
+!example*/addons.make
+!example*/bin
+example*/bin/*
+!example*/bin/data
