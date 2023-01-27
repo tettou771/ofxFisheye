@@ -2,7 +2,8 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-
+    // set fisheye area
+    ofxFisheye::setSize(ofGetWidth(), ofGetHeight());
 }
 
 //--------------------------------------------------------------
@@ -18,7 +19,7 @@ void ofApp::draw(){
 	float factor = (float)ofGetMouseX() / ofGetWidth();
 	ofxFisheye::setFisheyeFactor(factor);
 
-	// 1:normal over1:zoomIn
+	// 1:normal >1:zoomIn
 	float scale = (float)ofGetMouseY() / ofGetHeight() + 1.0;
 	ofxFisheye::setScale(scale);
 

@@ -10,6 +10,7 @@ public:
 private:
 	ofFbo source;
 	ofShader shader;
+    int areaWidth, areaHeight;
 	float fisheyeFactor, scale;
 	void makeShader();
 	void m_begin();
@@ -22,6 +23,11 @@ private:
 	// static
 public:
 	static void begin();
+    static void setSize(int width, int height);
+    static void setWidth(int width);
+    static void setHeight(int height);
+    static int getWidth();
+    static int getHeight();
 	static void end();
 	static void setFisheyeFactor(float);
 	static float getFisheyeFactor();

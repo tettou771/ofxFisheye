@@ -5,6 +5,8 @@ ofxFisheye * ofxFisheye::singleton = nullptr;
 ofxFisheye::ofxFisheye() {
 	fisheyeFactor = 1.0;
 	scale = 1.0;
+    areaWidth = 1;
+    areaHeight = 1;
 	makeShader();
 }
 
@@ -55,7 +57,6 @@ void ofxFisheye::makeShader() {
 }
 
 void ofxFisheye::m_begin() {
-	m_sourceResizeIfChanged();
 	source.begin();
 	ofClear(0, 0);
 }
@@ -87,8 +88,8 @@ void ofxFisheye::m_end() {
 }
 
 void ofxFisheye::m_sourceResizeIfChanged() {
-	if (source.getWidth() != ofGetWidth() || source.getHeight() != ofGetHeight()) {
-		source.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA, 4);
+	if (source.getWidth() != areaWidth || source.getHeight() != areaHeight) {
+		source.allocate(areaWidth, areaHeight, GL_RGBA, 4);
 	}
 }
 
@@ -101,6 +102,35 @@ void ofxFisheye::makeSingletonIfDoesntExist() {
 void ofxFisheye::begin() {
 	makeSingletonIfDoesntExist();
 	singleton->m_begin();
+}
+
+void ofxFisheye::setSize(int width, int height) {
+    makeSingletonIfDoesntExist();
+    singleton->areaWidth = width;
+    singleton->areaHeight = height;
+    singleton->m_sourceResizeIfChanged();
+}
+
+void ofxFisheye::setWidth(int width) {
+    makeSingletonIfDoesntExist();
+    singleton->areaWidth = width;
+    singleton->m_sourceResizeIfChanged();
+}
+
+void ofxFisheye::setHeight(int height) {
+    makeSingletonIfDoesntExist();
+    singleton->areaHeight = height;
+    singleton->m_sourceResizeIfChanged();
+}
+
+int ofxFisheye::getWidth() {
+    makeSingletonIfDoesntExist();
+    return singleton->areaWidth;
+}
+
+int ofxFisheye::getHeight() {
+    makeSingletonIfDoesntExist();
+    return singleton->areaWidth;
 }
 
 void ofxFisheye::end() {
