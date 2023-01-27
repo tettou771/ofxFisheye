@@ -1,1 +1,1 @@
-ofxFishEye
+ofxFisheye
